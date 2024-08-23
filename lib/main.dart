@@ -1,10 +1,16 @@
-import 'package:ecommerce_task/presentation/otp_screen/view/otp_screen.dart';
-import 'package:ecommerce_task/presentation/registration_screen/view/registration_screen.dart';
-import 'package:ecommerce_task/presentation/splash_screen/view/splash_screen.dart';
+import 'package:ecommerce_task/presentation/cart_screen/controller/cart_controller.dart';
+import 'package:ecommerce_task/presentation/home_screen/view/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,8 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
-      home: OtpScreen(),
+      home: HomeScreen(),
     );
   }
 }
