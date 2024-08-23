@@ -19,6 +19,13 @@ class GlTextStyles {
     );
   }
 
+  static hintstyle({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.roboto(
+      fontSize: size ?? 20,
+      fontWeight: weight ?? FontWeight.w400,
+      color: color ?? ColorTheme.black,
+    );
+  }
   // static oswald({double? size, FontWeight? weight, Color? color}) {
   //   return GoogleFonts.oswald(
   //     fontSize: size ?? 20,
