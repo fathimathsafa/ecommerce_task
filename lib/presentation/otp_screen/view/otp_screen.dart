@@ -1,5 +1,6 @@
 import 'package:ecommerce_task/core/constants/color_constants.dart';
 import 'package:ecommerce_task/core/constants/text_style_constatnts.dart';
+import 'package:ecommerce_task/presentation/home_screen/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -62,7 +63,7 @@ class OtpScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => OtpScreen()));
+                  MaterialPageRoute(builder: (context) => HomeScreen()));
             },
             child: Container(
               height: size.height * 0.06,
