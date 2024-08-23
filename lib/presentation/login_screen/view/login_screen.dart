@@ -2,9 +2,10 @@ import 'package:ecommerce_task/core/constants/color_constants.dart';
 import 'package:ecommerce_task/core/constants/text_style_constatnts.dart';
 import 'package:ecommerce_task/presentation/login_screen/view/login_screen.dart';
 import 'package:ecommerce_task/presentation/otp_screen/view/otp_screen.dart';
+import 'package:ecommerce_task/presentation/registration_screen/view/registration_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
 
   @override
@@ -15,47 +16,14 @@ class RegistrationScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: size.height * 0.2,
+            height: size.height * 0.1,
           ),
           Text(
-            "WELCOME TO BAG NEST",
+            "WELCOME BACK TO BAG NEST",
             style: GlTextStyles.robotoStyl(),
           ),
           SizedBox(
-            height: size.height * 0.06,
-          ),
-          Padding(
-            padding:
-                EdgeInsets.only(left: size.width * .1, right: size.width * .1),
-            child: TextFormField(
-              //controller: namecontroller,
-              textInputAction: TextInputAction.next,
-              validator: (name) {
-                if (name!.isEmpty) {
-                  return "Enter a valid Username";
-                } else {
-                  return null;
-                }
-              },
-              style: TextStyle(color: ColorTheme.backgroundclr),
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: ColorTheme.black,
-                ),
-                filled: true,
-                fillColor: ColorTheme.text,
-                hintText: 'Name',
-                hintStyle: GlTextStyles.hintstyle(size: 15),
-                contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide.none),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: size.height * 0.05,
+            height: size.height * 0.2,
           ),
           Padding(
             padding:
@@ -88,7 +56,7 @@ class RegistrationScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: size.height * 0.05,
+            height: size.height * 0.07,
           ),
           InkWell(
             onTap: () {
@@ -103,7 +71,7 @@ class RegistrationScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               child: Center(
                 child: Text(
-                  "SEND",
+                  "LOGIN",
                   style: GlTextStyles.hintstyle(
                       size: 15,
                       color: ColorTheme.backgroundclr,
@@ -117,11 +85,13 @@ class RegistrationScreen extends StatelessWidget {
           ),
           TextButton(
               onPressed: () {
-                Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegistrationScreen()));
               },
               child: Text(
-                "Already have an account? Login",
+                "Don't have an account? Register",
                 style: GlTextStyles.robotoStyl(size: 15),
               ))
         ],
