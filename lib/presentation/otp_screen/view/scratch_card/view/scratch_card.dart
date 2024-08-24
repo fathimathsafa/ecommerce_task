@@ -1,5 +1,3 @@
-
-
 import 'package:ecommerce_task/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:scratcher/scratcher.dart';
@@ -7,58 +5,25 @@ import 'package:scratcher/scratcher.dart';
 class ScratchCard extends StatelessWidget {
   final VoidCallback onAddToCart;
 
-  ScratchCard({required this.onAddToCart});
+  ScratchCard({super.key, required this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
     return Scratcher(
       brushSize: 50,
       threshold: 50,
-      color: Colors.grey,
+      color: ColorTheme.backgroundclr,
       onThreshold: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Congratulations! You scratched off the card!'),
-          ),
-        );
+        onAddToCart();
       },
       child: Container(
-        height: 200,
+        height: 300,
         width: 300,
-        decoration: BoxDecoration(
-          color: ColorTheme.backgroundclr,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              'https://media.istockphoto.com/id/1204235743/photo/stylish-fashionable-woman-with-orange-round-bag.webp?b=1&s=612x612&w=0&k=20&c=KG95k0zw49LTxC7uxyyKCw88GhaybjhVIxRZjBVbgak=',
-              height: 80,
-            ),
-            Text(
-              "HAND BAG",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              "₹0.00",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                onAddToCart();
-              },
-              child: Text("Add to Cart"),
-            ),
-          ],
+        color: ColorTheme.backgroundclr,
+        alignment: Alignment.center,
+        child: Text(
+          'Congratulations! You won a free bag.',
+          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
       ),
     );
