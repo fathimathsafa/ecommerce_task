@@ -1,3 +1,5 @@
+import 'package:ecommerce_task/core/constants/color_constants.dart';
+import 'package:ecommerce_task/core/constants/text_style_constatnts.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
 import 'package:pdf/pdf.dart';
@@ -14,51 +16,102 @@ class OrderSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final totalPrice = Cart.getTotalPrice();
-
+    var size = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Order Success')),
+      backgroundColor: ColorTheme.backgroundclr,
+      appBar: AppBar(
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: ColorTheme.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: ColorTheme.backgroundclr,
+        title: Text(
+          "ORDER INFO",
+          style: GlTextStyles.robotoStyl(),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Your order has been placed successfully!'),
-            SizedBox(height: 20),
-            Text('Payment Method: ${_getPaymentMethod()}'),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                // Generate and print the invoice PDF
-                final pdf = pdfWidgets.Document();
-                pdf.addPage(
-                  pdfWidgets.Page(
-                    build: (pdfContext) => pdfWidgets.Column(
-                      children: [
-                        pdfWidgets.Text('Product Name(s)'),
-                        ...products.map(
-                          (product) => pdfWidgets.Text(
-                              '${product.name} x${product.quantity}'),
+        child: ListTile(
+          contentPadding: EdgeInsets.all(16.0),
+          tileColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          title: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: size.height * 0.4,
+                ),
+                Text(
+                  'Your order has been placed successfully!',
+                  style: TextStyle(
+                    color: ColorTheme.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Payment Method: ${getPaymentMethod()}',
+                  style: TextStyle(
+                    color: ColorTheme.black,
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: MaterialButton(
+                    color: ColorTheme.backgroundclr,
+                    onPressed: () async {
+                      final pdf = pdfWidgets.Document();
+                      pdf.addPage(
+                        pdfWidgets.Page(
+                          build: (pdfContext) => pdfWidgets.Column(
+                            children: [
+                              pdfWidgets.Text('Product Name(s)'),
+                              ...products.map(
+                                (product) => pdfWidgets.Text(
+                                  '${product.name} x${product.quantity}',
+                                ),
+                              ),
+                              pdfWidgets.Text(
+                                'Total Price: \$${totalPrice.toStringAsFixed(2)}',
+                              ),
+                              pdfWidgets.Text(
+                                'Thank you for shopping with us!',
+                              ),
+                            ],
+                          ),
                         ),
-                        pdfWidgets.Text(
-                            'Total Price: \$${totalPrice.toStringAsFixed(2)}'),
-                        pdfWidgets.Text('Thank you for shopping with us!'),
-                      ],
+                      );
+                      await Printing.layoutPdf(
+                        onLayout: (PdfPageFormat format) async => pdf.save(),
+                      );
+                    },
+                    child: Text(
+                      'PRINT PDF',
+                      style: TextStyle(color: ColorTheme.black),
                     ),
                   ),
-                );
-                await Printing.layoutPdf(
-                  onLayout: (PdfPageFormat format) async => pdf.save(),
-                );
-              },
-              child: Text('Print Invoice'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  String _getPaymentMethod() {
+  String getPaymentMethod() {
     switch (paymentMethod) {
       case 1:
         return 'Google Pay';

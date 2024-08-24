@@ -35,6 +35,9 @@ dependencies:
   printing: ^5.13.2
   provider:
   badges:
+  firebase_auth: 
+  firebase_core:
+  scratcher: 
 
 
   # The following adds the Cupertino Icons font to your application.

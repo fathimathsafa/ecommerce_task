@@ -119,8 +119,8 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(height: 8.0),
                           Center(
                             child: MaterialButton(
-                              color: ColorTheme.buttoncolor,
-                              shape: StadiumBorder(),
+                              color: ColorTheme.backgroundclr,
+                              //shape: StadiumBorder(),
                               onPressed: () {
                                 cartProvider.addProduct(product);
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -131,10 +131,10 @@ class HomeScreen extends StatelessWidget {
                                 );
                               },
                               child: Text(
-                                'Add to Cart',
+                                'ADD TO CART',
                                 style: GlTextStyles.hintstyle(
                                   size: 15,
-                                  color: ColorTheme.highlights,
+                                  color: ColorTheme.text,
                                 ),
                               ),
                             ),

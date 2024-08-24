@@ -1,13 +1,15 @@
-import 'package:ecommerce_task/core/constants/color_constants.dart';
-import 'package:ecommerce_task/presentation/cart_screen/controller/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_task/core/constants/color_constants.dart';
+import 'package:ecommerce_task/core/constants/text_style_constatnts.dart';
+import 'package:ecommerce_task/presentation/cart_screen/controller/cart_controller.dart';
 import 'package:ecommerce_task/presentation/cart_screen/model/cart_model.dart';
 import 'package:ecommerce_task/presentation/check_out_screen/view/check_out_screen.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.sizeOf(context);
     final cartProvider = Provider.of<CartProvider>(context);
     final cartProducts = cartProvider.cart;
     final totalPrice = cartProvider.totalPrice;
@@ -26,28 +28,65 @@ class CartScreen extends StatelessWidget {
           },
         ),
         backgroundColor: ColorTheme.backgroundclr,
-        title: Text("CART"),
+        title: Text(
+          "CART",
+          style: GlTextStyles.robotoStyl(),
+        ),
       ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.all(8.0),
               itemCount: cartProducts.length,
               itemBuilder: (context, index) {
                 final product = cartProducts[index];
-                return ListTile(
-                  tileColor:
-                      ColorTheme.text, 
-                  textColor: ColorTheme.backgroundclr, 
-                  iconColor: ColorTheme.backgroundclr, 
-                  leading: Image.network(product.imageUrl),
-                  title: Text(product.name),
-                  subtitle: Text('₹${product.price}'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.remove_shopping_cart),
-                    onPressed: () {
-                      cartProvider.removeProduct(product);
-                    },
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: [
+                        Image.network(
+                          product.imageUrl,
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: ColorTheme.black,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '₹${product.price}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: ColorTheme.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.remove_shopping_cart,
+                              color: ColorTheme.black),
+                          onPressed: () {
+                            cartProvider.removeProduct(product);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -55,11 +94,27 @@ class CartScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
+            child: Row(
               children: [
-                Text('Total Price: ₹${totalPrice.toStringAsFixed(2)}'),
-                SizedBox(height: 10),
-                ElevatedButton(
+                SizedBox(
+                  width: size.width * 0.1,
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  color: ColorTheme.text,
+                  child: Text(
+                    'TOTAL: ₹${totalPrice.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: ColorTheme.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: size.width * 0.15,
+                ),
+                MaterialButton(
+                  color: ColorTheme.text,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -71,8 +126,11 @@ class CartScreen extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'Proceed to Checkout',
-                    style: TextStyle(color: ColorTheme.backgroundclr),
+                    'CHECK OUT',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: ColorTheme.black,
+                        fontSize: 16),
                   ),
                 ),
               ],
