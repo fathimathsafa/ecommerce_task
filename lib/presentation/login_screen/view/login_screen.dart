@@ -26,7 +26,8 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.2),
             Padding(
-              padding: EdgeInsets.only(left: size.width * .1, right: size.width * .1),
+              padding: EdgeInsets.only(
+                  left: size.width * .1, right: size.width * .1),
               child: TextFormField(
                 controller: phoneController,
                 textInputAction: TextInputAction.next,
@@ -63,7 +64,8 @@ class LoginScreen extends StatelessWidget {
                     phoneNumber: phoneController.text,
                     verificationCompleted: (phoneAuthCredential) {
                       // Auto verification succeeded, sign in directly
-                      FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+                      FirebaseAuth.instance
+                          .signInWithCredential(phoneAuthCredential);
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -80,7 +82,8 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OtpScreen(verificationId: verificationId),
+                          builder: (context) =>
+                              OtpScreen(verificationId: verificationId),
                         ),
                       );
                     },

@@ -5,6 +5,7 @@ import 'package:ecommerce_task/core/constants/text_style_constatnts.dart';
 import 'package:ecommerce_task/presentation/cart_screen/controller/cart_controller.dart';
 import 'package:ecommerce_task/presentation/cart_screen/model/cart_model.dart';
 import 'package:ecommerce_task/presentation/check_out_screen/view/check_out_screen.dart';
+import 'package:ecommerce_task/presentation/home_screen/view/home_screen.dart'; // Import your home screen
 
 class CartScreen extends StatelessWidget {
   @override
@@ -24,7 +25,11 @@ class CartScreen extends StatelessWidget {
             color: ColorTheme.white,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()), // Replace with your home screen
+              ModalRoute.withName('/'), // Clear all previous routes
+            );
           },
         ),
         backgroundColor: ColorTheme.backgroundclr,

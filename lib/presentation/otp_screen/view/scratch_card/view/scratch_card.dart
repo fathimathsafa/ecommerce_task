@@ -1,6 +1,8 @@
-import 'package:ecommerce_task/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scratcher/scratcher.dart';
+import 'package:ecommerce_task/core/constants/color_constants.dart';
+
 
 class ScratchCard extends StatelessWidget {
   final VoidCallback onAddToCart;
@@ -40,7 +42,7 @@ class ScratchCard extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Price: \$${price.toStringAsFixed(2)}',
+                  'Price: ₹${price.toStringAsFixed(2)}',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 20),
