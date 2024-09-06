@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "164893896862",
-    "project_id": "bagnest-9ed5c",
-    "storage_bucket": "bagnest-9ed5c.appspot.com"
+    "project_number": "793206883976",
+    "project_id": "bagnest-d5594",
+    "storage_bucket": "bagnest-d5594.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:164893896862:android:5c9575d72da41659128b8f",
+        "mobilesdk_app_id": "1:793206883976:android:73d6512c37630602c4413d",
         "android_client_info": {
           "package_name": "com.example.ecommerce_task"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAT-0T0_t35lseiLB5MP3QwpErQx0gv7AU"
+          "current_key": "AIzaSyDpzlut-Wf7ONzy_RzPZZ3WDXo3TLbjarg"
         }
       ],
       "services": {

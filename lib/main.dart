@@ -8,13 +8,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: FirebaseOptions(
-          apiKey: "AIzaSyAT-0T0_t35lseiLB5MP3QwpErQx0gv7AU",
-          appId: "1:164893896862:android:5c9575d72da41659128b8f",
+          apiKey: "AIzaSyDpzlut-Wf7ONzy_RzPZZ3WDXo3TLbjarg",
+          appId: "1:793206883976:android:73d6512c37630602c4413d",
           messagingSenderId: "",
-          projectId: "bagnest-9ed5c"));
+          projectId: "bagnest-d5594"));
   runApp(
     ChangeNotifierProvider(
       create: (context) => CartProvider(),
+      
       child: MyApp(),
     ),
   );
